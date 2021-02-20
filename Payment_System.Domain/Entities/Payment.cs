@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Payment_System.Domain.Entities
 {
-    public class Payment 
+    public class Payment
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,8 +15,14 @@ namespace Payment_System.Domain.Entities
         public string CardHolder { get; set; }
         public string ExpirationDate { get; set; }
         public string SecurityCode { get; set; }
+        [Column(TypeName = "decimal(18,2")]
         public decimal Amount { get; set; }
-        public PaymentStatus PaymentStatus { get; set; } = new PaymentStatus();
+        public int PaymentStatusId { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+
+        internal Payment()
+        {
+        }
 
         public Payment(string card_number, string card_owner, string expiry_date, string security_code, decimal amount)
         {

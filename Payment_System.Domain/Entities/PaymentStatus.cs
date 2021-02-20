@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Payment_System.Domain.Entities
 {
@@ -10,15 +7,14 @@ namespace Payment_System.Domain.Entities
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
-        public int PaymentId { get; set; }
-        public PaymentStatusEnum Status { get; set; } = PaymentStatusEnum.PENDING;
-        public Payment Payment { get; set; }
+        public PaymentStatusEnum Status { get; set; }
+        public string Name { get; set; }
     }
 
     public enum PaymentStatusEnum
     {
-        PENDING = 0,
+        PENDING = 1,
         PROCESSED,
-        FAILED 
+        FAILED
     }
 }
