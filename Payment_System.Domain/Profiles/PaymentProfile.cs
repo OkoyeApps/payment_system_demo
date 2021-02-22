@@ -11,14 +11,37 @@ namespace Payment_System.Domain.Profiles
     {
         public PaymentProfile()
         {
+            Func<Payment, PaymentDetailResponse, object> FormatMessage = (src, des) =>
+            {
+                switch (src.PaymentStatus.Status)
+                {
+                    case PaymentStatusEnum.PENDING:
+                        return "Processing Payment...";
+                    case PaymentStatusEnum.PROCESSED:
+                        return "Payment Successfully Processed";
+                    default:
+                        return "Payment Processing Failed";
+                }
+            };
+
             CreateMap<Payment_Dto, Payment>()
                 .ForMember(dest => dest.CreditCardNumber, opt => opt.MapFrom(src => src.card_number))
-                                .ForMember(dest => dest.CreditCardNumber, opt => opt.MapFrom(src => src.card_number))
-                                .ForMember(dest => dest.CardHolder, opt => opt.MapFrom(src => src.card_holder))
-                                .ForMember(dest => dest.ExpirationDate, opt => opt.MapFrom(src => src.expiry_date))
-                                .ForMember(dest => dest.SecurityCode, opt => opt.MapFrom(src => src.security_code))
-                                .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.amount))
+                                .ForCtorParam("card_number", x => x.MapFrom(y => y.card_number))
+                                .ForCtorParam("card_owner", x => x.MapFrom(y => y.card_holder))
+                                .ForCtorParam("expiry_date", x => x.MapFrom(y => y.expiry_date))
+                                .ForCtorParam("security_code", x => x.MapFrom(y => y.security_code))
+                                .ForCtorParam("amount", x => x.MapFrom(y => y.amount))
+                                .ForCtorParam("status", x => x.MapFrom(y => y.Status))
                                 .ReverseMap();
+
+            CreateMap<Payment, PaymentDetailResponse>()
+                .ForMember(dest => dest.card_holder, opt => opt.MapFrom(src => src.CardHolder))
+                .ForMember(dest => dest.card_number, opt => opt.MapFrom(src => src.CreditCardNumber))
+                .ForMember(dest => dest.amount, opt => opt.MapFrom(src => src.Amount))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.PaymentStatus.Status))
+                .ForMember(dest => dest.Message, opt => opt.MapFrom(FormatMessage));
+
+           
         }
     }
 }

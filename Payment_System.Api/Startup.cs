@@ -16,6 +16,7 @@ namespace Payment_System.Api
 {
     public class Startup
     {
+        private static readonly string[] Headers = new[] { "X-Resource" };
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,10 +27,18 @@ namespace Payment_System.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(config =>
+                {
+                    config.AllowAnyHeader().AllowAnyMethod().WithExposedHeaders(Headers);
+                });
+            });
 
             services.AddDatabaseConnection();
             services.AddEntityServices();
             services.AddControllerExtension();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         }
 

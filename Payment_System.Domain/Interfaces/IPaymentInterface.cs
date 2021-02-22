@@ -1,18 +1,16 @@
 ﻿using Payment_System.Domain.Dtos;
+using Payment_System.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Payment_System.Domain.Interfaces
 {
     public interface IPaymentInterface
     {
-        int IExpensivePaymentGateway(Payment_Dto payment_model, int retry);
-        int ICheapPaymentGateway(Payment_Dto payment_model, int retry);
-        int PremiumPaymentService(Payment_Dto payment_model, int retry);
-        int ChoosePaymentHandler(Payment_Dto payment_dto);
-        bool ValidateCreditCard(string cardnumber);
-        (bool, List<KeyValuePair<string, string>>) ValidateModel(Payment_Dto model);
-        (bool, KeyValuePair<string, string>?) validateExpiryDate(string expiryDate);
+        Task<PaymentResponse> IExpensivePaymentGateway(Payment payment_model, bool isPremium, int retry);
+        Task<PaymentResponse> ICheapPaymentGateway(Payment payment_model, int retry);
+        Task<PaymentResponse> ChoosePaymentHandler(Payment_Dto payment_dto);
+        Task<Payment> GetPaymentByIdAsync(Guid id);
+        Task<PaymentState> GetPaymentStatusByStatus(int status);
     }
 }

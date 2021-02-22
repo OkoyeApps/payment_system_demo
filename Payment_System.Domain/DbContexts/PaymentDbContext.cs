@@ -9,20 +9,35 @@ using System.Text;
 
 namespace Payment_System.Domain.DbContexts
 {
-    public class PaymentDbContext : DbContext
+    interface DbSetInterfaces
     {
+        DbSet<Payment> Payment { get; set; }
+        DbSet<PaymentState> PaymentStatus { get; set; }
+    }
+    public class PaymentDbContext :  DbContext, DbSetInterfaces
+    {
+        public PaymentDbContext() : base()
+        {
+
+        }
         public PaymentDbContext(DbContextOptions<PaymentDbContext> options) : base(options)
         {
             
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<Payment> Payment { get; set; }
+        public DbSet<PaymentState> PaymentStatus { get; set; }
+    }
+
+    public class BackgroundDbContex : DbContext, DbSetInterfaces
+    {
+        public BackgroundDbContex(DbContextOptions<BackgroundDbContex> options) : base(options)
         {
-            base.OnModelCreating(modelBuilder);
+
         }
 
         public DbSet<Payment> Payment { get; set; }
-        public DbSet<PaymentStatus> PaymentStatus { get; set; }
+        public DbSet<PaymentState> PaymentStatus { get; set; }
     }
 
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<PaymentDbContext>

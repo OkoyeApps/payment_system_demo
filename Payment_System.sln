@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F2228A85-BDEE-407D-BC6B-03C73E010756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment_System.Domain", "Payment_System.Domain\Payment_System.Domain.csproj", "{486E21E3-C9C8-4E32-BAD5-38DC2C4CB369}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payment_System.Domain", "Payment_System.Domain\Payment_System.Domain.csproj", "{486E21E3-C9C8-4E32-BAD5-38DC2C4CB369}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment_System.Api", "Payment_System.Api\Payment_System.Api.csproj", "{2011BDE5-B03B-4777-BB8D-2B305A8DD67B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payment_System.Api", "Payment_System.Api\Payment_System.Api.csproj", "{2011BDE5-B03B-4777-BB8D-2B305A8DD67B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment_System.Tests", "Payment_System.Tests\Payment_System.Tests.csproj", "{58EF55BD-12CA-4003-99B2-E303903F4259}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{2011BDE5-B03B-4777-BB8D-2B305A8DD67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2011BDE5-B03B-4777-BB8D-2B305A8DD67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2011BDE5-B03B-4777-BB8D-2B305A8DD67B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58EF55BD-12CA-4003-99B2-E303903F4259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58EF55BD-12CA-4003-99B2-E303903F4259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58EF55BD-12CA-4003-99B2-E303903F4259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58EF55BD-12CA-4003-99B2-E303903F4259}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{486E21E3-C9C8-4E32-BAD5-38DC2C4CB369} = {F2228A85-BDEE-407D-BC6B-03C73E010756}
 		{2011BDE5-B03B-4777-BB8D-2B305A8DD67B} = {F2228A85-BDEE-407D-BC6B-03C73E010756}
+		{58EF55BD-12CA-4003-99B2-E303903F4259} = {F2228A85-BDEE-407D-BC6B-03C73E010756}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19367A29-BF11-4F6A-B666-4271996FEC28}

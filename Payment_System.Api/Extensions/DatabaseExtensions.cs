@@ -20,7 +20,15 @@ namespace Payment_System.Api.Extensions
             }
             if (configuration is null) throw new NullReferenceException(nameof(configuration));
 
-            services.AddDbContext<PaymentDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<PaymentDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")
+                , sqlServerOptionsAction: sqlOptions =>
+            {
+                sqlOptions.EnableRetryOnFailure();
+            }));
+
+            services.AddDbContextFactory<BackgroundDbContex>(
+             options =>
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
     }
 }

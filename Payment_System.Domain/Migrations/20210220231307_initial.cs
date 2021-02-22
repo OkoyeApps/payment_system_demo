@@ -30,24 +30,23 @@ namespace Payment_System.Domain.Migrations
                     ExpirationDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentStatusId = table.Column<int>(type: "int", nullable: false),
-                    PaymentStatusId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    PaymentStatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Payment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Payment_PaymentStatus_PaymentStatusId1",
-                        column: x => x.PaymentStatusId1,
+                        name: "FK_Payment_PaymentStatus_PaymentStatusId",
+                        column: x => x.PaymentStatusId,
                         principalTable: "PaymentStatus",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payment_PaymentStatusId1",
+                name: "IX_Payment_PaymentStatusId",
                 table: "Payment",
-                column: "PaymentStatusId1");
+                column: "PaymentStatusId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

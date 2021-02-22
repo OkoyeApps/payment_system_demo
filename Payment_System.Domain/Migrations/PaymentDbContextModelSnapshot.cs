@@ -37,10 +37,7 @@ namespace Payment_System.Domain.Migrations
                     b.Property<string>("ExpirationDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaymentStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("PaymentStatusId1")
+                    b.Property<Guid>("PaymentStatusId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("SecurityCode")
@@ -48,7 +45,7 @@ namespace Payment_System.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaymentStatusId1");
+                    b.HasIndex("PaymentStatusId");
 
                     b.ToTable("Payment");
                 });
@@ -74,7 +71,9 @@ namespace Payment_System.Domain.Migrations
                 {
                     b.HasOne("Payment_System.Domain.Entities.PaymentStatus", "PaymentStatus")
                         .WithMany()
-                        .HasForeignKey("PaymentStatusId1");
+                        .HasForeignKey("PaymentStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("PaymentStatus");
                 });

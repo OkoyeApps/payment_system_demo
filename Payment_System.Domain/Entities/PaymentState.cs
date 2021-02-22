@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Payment_System.Domain.Entities
 {
-    public class PaymentStatus
+    public class PaymentState
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();

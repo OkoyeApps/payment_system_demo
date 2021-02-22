@@ -16,10 +16,10 @@ namespace Payment_System.Domain.DbContexts
             }
             var values = Enum.GetNames(typeof(PaymentStatusEnum));
 
-            PaymentStatus[] array_of_status = new PaymentStatus[3];
+            PaymentState[] array_of_status = new PaymentState[3];
             for (var i = 0; i < values.Length; i++)
             {
-                array_of_status[i] = new PaymentStatus
+                array_of_status[i] = new PaymentState
                 {
                     Status = (PaymentStatusEnum)Enum.Parse(typeof(PaymentStatusEnum),
                     values[i]),
