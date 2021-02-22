@@ -1,4 +1,4 @@
-# Simple Library Service Api
+# Simple Payment Service Api
 This is a simple api service that simulate an online payment system with two api endpoints for making payment and getting the status of the payment as it was implemented as an asynchronous payment system. 
 
 # Tools
